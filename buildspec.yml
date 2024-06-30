@@ -2,30 +2,15 @@ version: 0.2
 
 phases:
   install:
-    commands:
-      - echo Installing dependencies...
+    runtime-versions:
+      nodejs: 12
   build:
     commands:
-      - echo Build started on `date`
+      - aws s3 cp index.html s3://your-bucket-name/ --content-type "text/html"
+      - aws s3 cp styles.css s3://your-bucket-name/ --content-type "text/css"
+      - aws s3 cp script.js s3://your-bucket-name/ --content-type "application/javascript"
+      # Add more commands for other files as needed
+
 artifacts:
   files:
     - '**/*'
-  discard-paths: yes
-
-post_build:
-  commands:
-    - echo Build completed on `date`
-    - echo Uploading files to S3 with correct Content-Type...
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.html" --content-type "text/html"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.css" --content-type "text/css"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.js" --content-type "application/javascript"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.png" --content-type "image/png"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.jpg" --content-type "image/jpeg"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.gif" --content-type "image/gif"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.svg" --content-type "image/svg+xml"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.json" --content-type "application/json"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.xml" --content-type "application/xml"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.woff" --content-type "font/woff"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.woff2" --content-type "font/woff2"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.ttf" --content-type "font/ttf"
-    - aws s3 cp . s3://your-bucket-name/ --recursive --exclude "*" --include "*.eot" --content-type "application/vnd.ms-fontobject"
