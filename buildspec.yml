@@ -2,21 +2,13 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      nodejs: 12  
     commands:
       - echo "Installing Node.js version 12..."
-
+      - n 12 && rm -rf /tmp/*
   build:
     commands:
       - echo "Building application..."
       - aws s3 cp index.html s3://csce412jjoseph.xyz/ --content-type "text/html"
-
   post_build:
     commands:
-      - echo "Invalidating CloudFront cache..."
-      - aws cloudfront create-invalidation --distribution-id EK6BT7ZXEGNS0 --paths "/*"
-
-artifacts:
-  files:
-    - '**/*'  # Include all files in the build artifacts
+      - echo "Build completed"
