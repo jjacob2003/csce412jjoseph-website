@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        #basketball-svg {
+            width: 150px;
+            height: 150px;
+        }
+
+        .animate {
+            animation: moveAndSpin 4s infinite linear;
+        }
+
+        @keyframes moveAndSpin {
+            0% {
+                transform: translate(10vw, 30vh) rotate(0deg);
+            }
+            25% {
+                transform: translate(50vw, 10vh) rotate(90deg);
+            }
+            50% {
+                transform: translate(90vw, 60vh) rotate(180deg);
+            }
+            75% {
+                transform: translate(50vw, 110vh) rotate(270deg);
+            }
+            100% {
+                transform: translate(10vw, 30vh) rotate(360deg);
+            }
+        }
+
+        #ai-page-content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #ai-page-content h1 {
+            color: black;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        #ai-page-content p {
+            color: black;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: inline-block;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .dropbtn {
+            background-color: #ddd;
+            color: black;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ebebeb;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            z-index: 101;
+            transition:
+                0.5s padding,
+                0.5s background;
+        }
+
+        .dropdown-content:after {
+            content: "";
+            display: block;
+            height: 0;
+            border-top: 5px solid #ebebeb;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 101;
+            transition: 0.5s border-top;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            padding: 15px 0;
+            background: #ebebeb;
+            z-index: 100;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown:hover .dropdown-content:after {
+            border-top-color: #ebebeb;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 15px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Dropdown -->
+    <div class="dropdown">
+        <button class="dropbtn">&#9776;</button>
+        <div class="dropdown-content">
+            <a href="index.html">Home</a>
+            <a href="technical.html">Technical</a>
+            <a href="qualifications.html">Qualifications</a>
+            <a href="service.html">Service</a>
+            <a href="ai_page.html">AI Page</a>
+        </div>
+    </div>
+
+    <!-- AI Page Content -->
+    <div id="ai-page-content">
+        <h1>Welcome to the AI Page!</h1>
+        <p>We've got some amazing artificial intelligence stuff for you! Click the spinning basketball below to experience the magic.</p>
+    </div>
+
+    <!-- Spinning Basketball SVG -->
+    <svg id="basketball-svg" onclick="toggleAnimation()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="11" fill="#f39c12" stroke="#000" stroke-width="2" />
+        <line x1="12" y1="1" x2="12" y2="23" stroke="#000" stroke-width="2" />
+        <line x1="12" y1="6" x2="12" y2="18" stroke="#000" stroke-width="2" />
+        <line x1="12" y1="10" x2="12" y2="14" stroke="#000" stroke-width="2" />
+        <line x1="1" y1="12" x2="23" y2="12" stroke="#000" stroke-width="2" />
+        <circle cx="12" cy="12" r="1.5" fill="#000" />
+    </svg>
+
+    <script>
+        function toggleAnimation() {
+            var basketball = document.getElementById('basketball-svg');
+            basketball.classList.toggle('animate');
+        }
+    </script>
+
+</body>
+
+</html>
