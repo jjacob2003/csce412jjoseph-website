@@ -3,17 +3,19 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 12  # Example Node.js version
+      nodejs: 12  
     commands:
       - echo "Installing Node.js version 12..."
-      # Add any additional installation commands here
 
   build:
     commands:
       - echo "Building application..."
-      # Example: Run build scripts, compile assets, etc.
       - aws s3 cp index.html s3://csce412jjoseph.xyz/ --content-type "text/html"
-      # Replace 'index.html' with your actual file name and 'your-bucket-name' with your S3 bucket name
+
+  post_build:
+    commands:
+      - echo "Invalidating CloudFront cache..."
+      - aws cloudfront create-invalidation --distribution-id EK6BT7ZXEGNS0 --paths "/*"
 
 artifacts:
   files:
