@@ -1,11 +1,29 @@
 version: 0.2
+
 phases:
   install:
+    runtime-versions:
+      nodejs: 12 # Specify the runtime version if you're using a specific language
     commands:
       - echo Installing dependencies...
+      - npm install # Adjust this command based on your project's dependency manager (e.g., npm, yarn, pip)
   build:
     commands:
       - echo Build started on `date`
+      - echo Building the application...
+      - npm run build # Adjust this command based on your project's build command
 artifacts:
   files:
     - '**/*'
+  base-directory: build # Adjust based on your build output directory
+  discard-paths: yes
+
+post_build:
+  commands:
+    - echo Build completed on `date`
+    - echo Uploading files to S3 with correct Content-Type...
+    - aws s3 cp build/ s3://your-bucket-name/ --recursive --exclude "*" --include "*.html" --content-type "text/html"
+    - aws s3 cp build/ s3://your-bucket-name/ --recursive --exclude "*" --include "*.css" --content-type "text/css"
+    - aws s3 cp build/ s3://your-bucket-name/ --recursive --exclude "*" --include "*.js" --content-type "application/javascript"
+    - aws s3 cp build/ s3://your-bucket-name/ --recursive --exclude "*" --include "*.png" --content-type "image/png"
+    - aws s3 cp build/ s3://your-bucket-name/ --recursive --exclude "*" --include "*.jpg" --content-type "image/jpeg"
