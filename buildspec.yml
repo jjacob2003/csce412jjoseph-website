@@ -12,7 +12,7 @@ phases:
     commands:
       - echo "Building application..."
       # Example: Run build scripts, compile assets, etc.
-      - aws s3 cp index.html s3://your-bucket-name/ --content-type "text/html"
+      - aws s3 cp index.html s3://csce412jjoseph.xyz/ --content-type "text/html"
       # Replace 'index.html' with your actual file name and 'your-bucket-name' with your S3 bucket name
 
 artifacts:
