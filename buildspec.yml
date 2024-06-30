@@ -2,13 +2,19 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 12  # Example Node.js version
     commands:
       - echo "Installing Node.js version 12..."
-      - n 12 && rm -rf /tmp/*
+      # Add any additional installation commands here
+
   build:
     commands:
       - echo "Building application..."
+      # Example: Run build scripts, compile assets, etc.
       - aws s3 cp index.html s3://csce412jjoseph.xyz/ --content-type "text/html"
-  post_build:
-    commands:
-      - echo "Build completed"
+      # Replace 'index.html' with your actual file name and 'your-bucket-name' with your S3 bucket name
+
+artifacts:
+  files:
+    - '**/*'  # Include all files in the build artifacts
